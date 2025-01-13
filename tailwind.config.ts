@@ -24,6 +24,9 @@ export default {
     fontSize,
 
     extend: {
+      dropShadow: {
+        up: "0px -1rem 1rem rgba(0, 0, 0, 0.4)",
+      },
       fontFamily: {
         sans: ["var(--font-bowlby)"],
         mono: ["var(--font-dm-mono)"],

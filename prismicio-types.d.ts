@@ -4,7 +4,10 @@ import type * as prismic from "@prismicio/client";
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
-type HomepageDocumentDataSlicesSlice = ProductGridSlice | HeroSlice;
+type HomepageDocumentDataSlicesSlice =
+  | AboutTheSkateboardsSlice
+  | ProductGridSlice
+  | HeroSlice;
 
 /**
  * Content for Homepage documents
@@ -222,6 +225,185 @@ export type AllDocumentTypes =
   | SkateboardDocument;
 
 /**
+ * Primary content in *AboutTheSkateboards → Default → Primary*
+ */
+export interface AboutTheSkateboardsSliceDefaultPrimary {
+  /**
+   * Theme field in *AboutTheSkateboards → Default → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **API ID Path**: about_the_skateboards.default.primary.theme
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  theme: prismic.SelectField<
+    "Blue" | "Lime" | "Navy" | "Orange" | "Pink" | "Purple" | "Gray"
+  >;
+
+  /**
+   * Heading field in *AboutTheSkateboards → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: about_the_skateboards.default.primary.heading
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  heading: prismic.RichTextField;
+
+  /**
+   * Body field in *AboutTheSkateboards → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: about_the_skateboards.default.primary.body
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  body: prismic.RichTextField;
+
+  /**
+   * Button field in *AboutTheSkateboards → Default → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: about_the_skateboards.default.primary.button
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  button: prismic.LinkField;
+
+  /**
+   * Background Image field in *AboutTheSkateboards → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: about_the_skateboards.default.primary.background_image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  background_image: prismic.ImageField<never>;
+
+  /**
+   * Foreground Image field in *AboutTheSkateboards → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: about_the_skateboards.default.primary.foreground_image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  foreground_image: prismic.ImageField<never>;
+}
+
+/**
+ * Default variation for AboutTheSkateboards Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type AboutTheSkateboardsSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<AboutTheSkateboardsSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Primary content in *AboutTheSkateboards → Image on left → Primary*
+ */
+export interface AboutTheSkateboardsSliceImageOnLeftPrimary {
+  /**
+   * Theme field in *AboutTheSkateboards → Image on left → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **API ID Path**: about_the_skateboards.imageOnLeft.primary.theme
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  theme: prismic.SelectField<
+    "Blue" | "Lime" | "Navy" | "Orange" | "Pink" | "Purple" | "Gray"
+  >;
+
+  /**
+   * Heading field in *AboutTheSkateboards → Image on left → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: about_the_skateboards.imageOnLeft.primary.heading
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  heading: prismic.RichTextField;
+
+  /**
+   * Body field in *AboutTheSkateboards → Image on left → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: about_the_skateboards.imageOnLeft.primary.body
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  body: prismic.RichTextField;
+
+  /**
+   * Button field in *AboutTheSkateboards → Image on left → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: about_the_skateboards.imageOnLeft.primary.button
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  button: prismic.LinkField;
+
+  /**
+   * Background Image field in *AboutTheSkateboards → Image on left → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: about_the_skateboards.imageOnLeft.primary.background_image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  background_image: prismic.ImageField<never>;
+
+  /**
+   * Foreground Image field in *AboutTheSkateboards → Image on left → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: about_the_skateboards.imageOnLeft.primary.foreground_image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  foreground_image: prismic.ImageField<never>;
+}
+
+/**
+ * Image on left variation for AboutTheSkateboards Slice
+ *
+ * - **API ID**: `imageOnLeft`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type AboutTheSkateboardsSliceImageOnLeft = prismic.SharedSliceVariation<
+  "imageOnLeft",
+  Simplify<AboutTheSkateboardsSliceImageOnLeftPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *AboutTheSkateboards*
+ */
+type AboutTheSkateboardsSliceVariation =
+  | AboutTheSkateboardsSliceDefault
+  | AboutTheSkateboardsSliceImageOnLeft;
+
+/**
+ * AboutTheSkateboards Shared Slice
+ *
+ * - **API ID**: `about_the_skateboards`
+ * - **Description**: AboutTheSkateboards
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type AboutTheSkateboardsSlice = prismic.SharedSlice<
+  "about_the_skateboards",
+  AboutTheSkateboardsSliceVariation
+>;
+
+/**
  * Primary content in *Hero → Default → Primary*
  */
 export interface HeroSliceDefaultPrimary {
@@ -395,6 +577,12 @@ declare module "@prismicio/client" {
       SkateboardDocument,
       SkateboardDocumentData,
       AllDocumentTypes,
+      AboutTheSkateboardsSlice,
+      AboutTheSkateboardsSliceDefaultPrimary,
+      AboutTheSkateboardsSliceImageOnLeftPrimary,
+      AboutTheSkateboardsSliceVariation,
+      AboutTheSkateboardsSliceDefault,
+      AboutTheSkateboardsSliceImageOnLeft,
       HeroSlice,
       HeroSliceDefaultPrimary,
       HeroSliceVariation,
