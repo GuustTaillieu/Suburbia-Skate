@@ -6,4 +6,5 @@ export const components = {
   about_the_skateboards: dynamic(() => import("./AboutTheSkateboards")),
   hero: dynamic(() => import("./Hero")),
   product_grid: dynamic(() => import("./ProductGrid")),
+  team_members: dynamic(() => import("./TeamMembers")),
 };

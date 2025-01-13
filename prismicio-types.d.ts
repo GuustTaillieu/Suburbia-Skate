@@ -5,6 +5,7 @@ import type * as prismic from "@prismicio/client";
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
 type HomepageDocumentDataSlicesSlice =
+  | TeamMembersSlice
   | AboutTheSkateboardsSlice
   | ProductGridSlice
   | HeroSlice;
@@ -219,10 +220,96 @@ export type SkateboardDocument<Lang extends string = string> =
     Lang
   >;
 
+/**
+ * Content for Skater documents
+ */
+interface SkaterDocumentData {
+  /**
+   * First Name field in *Skater*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: skater.first_name
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  first_name: prismic.KeyTextField;
+
+  /**
+   * Last Name field in *Skater*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: skater.last_name
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  last_name: prismic.KeyTextField;
+
+  /**
+   * Background Image field in *Skater*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: skater.bg_image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  bg_image: prismic.ImageField<never>;
+
+  /**
+   * Foreground Image field in *Skater*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: skater.fg_image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  fg_image: prismic.ImageField<never>;
+
+  /**
+   * Customizer Link field in *Skater*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: skater.customizer_link
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  customizer_link: prismic.LinkField;
+
+  /**
+   * Theme field in *Skater*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **API ID Path**: skater.theme
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  theme: prismic.SelectField<
+    "Blue" | "Lime" | "Navy" | "Orange" | "Pink" | "Purple" | "Gray"
+  >;
+}
+
+/**
+ * Skater document from Prismic
+ *
+ * - **API ID**: `skater`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type SkaterDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<Simplify<SkaterDocumentData>, "skater", Lang>;
+
 export type AllDocumentTypes =
   | HomepageDocument
   | SettingsDocument
-  | SkateboardDocument;
+  | SkateboardDocument
+  | SkaterDocument;
 
 /**
  * Primary content in *AboutTheSkateboards → Default → Primary*
@@ -547,6 +634,78 @@ export type ProductGridSlice = prismic.SharedSlice<
   ProductGridSliceVariation
 >;
 
+/**
+ * Item in *TeamMembers → Default → Primary → Members*
+ */
+export interface TeamMembersSliceDefaultPrimaryMembersItem {
+  /**
+   * Team Members field in *TeamMembers → Default → Primary → Members*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: team_members.default.primary.members[].team_members
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  team_members: prismic.ContentRelationshipField<"skater">;
+}
+
+/**
+ * Primary content in *TeamMembers → Default → Primary*
+ */
+export interface TeamMembersSliceDefaultPrimary {
+  /**
+   * Heading field in *TeamMembers → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: team_members.default.primary.heading
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  heading: prismic.RichTextField;
+
+  /**
+   * Members field in *TeamMembers → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: team_members.default.primary.members[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  members: prismic.GroupField<
+    Simplify<TeamMembersSliceDefaultPrimaryMembersItem>
+  >;
+}
+
+/**
+ * Default variation for TeamMembers Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type TeamMembersSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<TeamMembersSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *TeamMembers*
+ */
+type TeamMembersSliceVariation = TeamMembersSliceDefault;
+
+/**
+ * TeamMembers Shared Slice
+ *
+ * - **API ID**: `team_members`
+ * - **Description**: TeamMembers
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type TeamMembersSlice = prismic.SharedSlice<
+  "team_members",
+  TeamMembersSliceVariation
+>;
+
 declare module "@prismicio/client" {
   interface CreateClient {
     (
@@ -576,6 +735,8 @@ declare module "@prismicio/client" {
       SettingsDocumentDataTopNavigationItem,
       SkateboardDocument,
       SkateboardDocumentData,
+      SkaterDocument,
+      SkaterDocumentData,
       AllDocumentTypes,
       AboutTheSkateboardsSlice,
       AboutTheSkateboardsSliceDefaultPrimary,
@@ -592,6 +753,11 @@ declare module "@prismicio/client" {
       ProductGridSliceDefaultPrimary,
       ProductGridSliceVariation,
       ProductGridSliceDefault,
+      TeamMembersSlice,
+      TeamMembersSliceDefaultPrimaryMembersItem,
+      TeamMembersSliceDefaultPrimary,
+      TeamMembersSliceVariation,
+      TeamMembersSliceDefault,
     };
   }
 }

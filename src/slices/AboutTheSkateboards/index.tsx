@@ -6,12 +6,12 @@ import {
 } from "@prismicio/react";
 import clsx from "clsx";
 
-import { getColorByTheme } from "./color";
 import { Bounded } from "@/app/components/Bounded";
 import { Heading } from "@/app/components/Heading";
 import { ButtonLink } from "@/app/components/ButtonLink";
 import { ParallaxImage } from "@/app/components/ParallaxImage";
 import { JSX } from "react/jsx-runtime";
+import { getBgColorByTheme } from "@/app/lib/color-by-theme";
 
 /**
  * Props for `AboutTheSkateboards`.
@@ -31,7 +31,7 @@ const AboutTheSkateboards = ({
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
       className={clsx(
-        getColorByTheme(slice.primary.theme),
+        getBgColorByTheme(slice.primary.theme),
         "bg-texture sticky top-[calc(var(--index)*2rem)] drop-shadow-up",
       )}
       style={{ "--index": index }}
