@@ -1,0 +1,53 @@
+{
+  "id": "physics_playground",
+  "type": "SharedSlice",
+  "name": "PhysicsPlayground",
+  "description": "PhysicsPlayground",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "background_image": {
+          "type": "Image",
+          "config": {
+            "label": "Background Image",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "image_copyright": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Image Copyright",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,strong,em,hyperlink"
+          }
+        },
+        "skateboards": {
+          "type": "Group",
+          "config": {
+            "label": "Skateboards",
+            "repeat": true,
+            "fields": {
+              "skateboard_image": {
+                "type": "Image",
+                "config": {
+                  "label": "Skateboard Image",
+                  "constraint": {},
+                  "thumbnails": []
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

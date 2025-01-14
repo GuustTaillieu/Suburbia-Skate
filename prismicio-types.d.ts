@@ -5,6 +5,7 @@ import type * as prismic from "@prismicio/client";
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
 type HomepageDocumentDataSlicesSlice =
+  | PhysicsPlaygroundSlice
   | TeamMembersSlice
   | AboutTheSkateboardsSlice
   | ProductGridSlice
@@ -553,6 +554,88 @@ type HeroSliceVariation = HeroSliceDefault;
 export type HeroSlice = prismic.SharedSlice<"hero", HeroSliceVariation>;
 
 /**
+ * Item in *PhysicsPlayground → Default → Primary → Skateboards*
+ */
+export interface PhysicsPlaygroundSliceDefaultPrimarySkateboardsItem {
+  /**
+   * Skateboard Image field in *PhysicsPlayground → Default → Primary → Skateboards*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: physics_playground.default.primary.skateboards[].skateboard_image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  skateboard_image: prismic.ImageField<never>;
+}
+
+/**
+ * Primary content in *PhysicsPlayground → Default → Primary*
+ */
+export interface PhysicsPlaygroundSliceDefaultPrimary {
+  /**
+   * Background Image field in *PhysicsPlayground → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: physics_playground.default.primary.background_image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  background_image: prismic.ImageField<never>;
+
+  /**
+   * Image Copyright field in *PhysicsPlayground → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: physics_playground.default.primary.image_copyright
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  image_copyright: prismic.RichTextField;
+
+  /**
+   * Skateboards field in *PhysicsPlayground → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: physics_playground.default.primary.skateboards[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  skateboards: prismic.GroupField<
+    Simplify<PhysicsPlaygroundSliceDefaultPrimarySkateboardsItem>
+  >;
+}
+
+/**
+ * Default variation for PhysicsPlayground Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type PhysicsPlaygroundSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<PhysicsPlaygroundSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *PhysicsPlayground*
+ */
+type PhysicsPlaygroundSliceVariation = PhysicsPlaygroundSliceDefault;
+
+/**
+ * PhysicsPlayground Shared Slice
+ *
+ * - **API ID**: `physics_playground`
+ * - **Description**: PhysicsPlayground
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type PhysicsPlaygroundSlice = prismic.SharedSlice<
+  "physics_playground",
+  PhysicsPlaygroundSliceVariation
+>;
+
+/**
  * Item in *ProductGrid → Default → Primary → Product*
  */
 export interface ProductGridSliceDefaultPrimaryProductItem {
@@ -748,6 +831,11 @@ declare module "@prismicio/client" {
       HeroSliceDefaultPrimary,
       HeroSliceVariation,
       HeroSliceDefault,
+      PhysicsPlaygroundSlice,
+      PhysicsPlaygroundSliceDefaultPrimarySkateboardsItem,
+      PhysicsPlaygroundSliceDefaultPrimary,
+      PhysicsPlaygroundSliceVariation,
+      PhysicsPlaygroundSliceDefault,
       ProductGridSlice,
       ProductGridSliceDefaultPrimaryProductItem,
       ProductGridSliceDefaultPrimary,
