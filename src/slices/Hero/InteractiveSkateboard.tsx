@@ -79,7 +79,7 @@ function Scene({ children }: SceneProps) {
 
     gsap.to(originCenterRef.current.rotation, {
       y: Math.PI / 64,
-      duration: 1,
+      duration: 3,
       repeat: -1,
       yoyo: true,
       ease: "sine.inOut",
