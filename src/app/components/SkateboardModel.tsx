@@ -1,7 +1,10 @@
 import * as THREE from "three";
-import { useMemo } from "react";
+import { useMemo, useRef } from "react";
 import { useGLTF, useTexture } from "@react-three/drei";
 import { GLTF } from "three-stdlib";
+import { useFrame } from "@react-three/fiber";
+import { useEffect } from "react";
+import gsap from "gsap";
 
 export type SkateboardModelProps = {
   deckTextureUrl: string;
@@ -37,6 +40,8 @@ export function SkateboardModel({
   boltColor,
   constantWheelSpin = false,
 }: SkateboardModelProps) {
+  const wheelRefs = useRef<THREE.Object3D[]>([]);
+
   const { nodes } = useGLTF("/skateboard.gltf") as GLTFResult;
 
   // WHEEL TEXTURES
@@ -130,6 +135,32 @@ export function SkateboardModel({
     });
   }, [wheelTexture]);
 
+  const addToWheelRefs = (ref: THREE.Object3D) => {
+    if (ref && !wheelRefs.current.includes(ref)) {
+      wheelRefs.current.push(ref);
+    }
+  };
+
+  useFrame(() => {
+    if (!wheelRefs.current || !constantWheelSpin) return;
+
+    wheelRefs.current.forEach((wheel) => {
+      wheel.rotation.x += 0.3;
+    });
+  });
+
+  useEffect(() => {
+    if (!wheelRefs.current || constantWheelSpin) return;
+
+    wheelRefs.current.forEach((wheel) => {
+      gsap.to(wheel.rotation, {
+        x: "-=30",
+        duration: 2.5,
+        ease: "circ.out",
+      });
+    });
+  }, [constantWheelSpin, wheelTextureUrl]);
+
   return (
     <group>
       <group name="Scene">
@@ -142,6 +173,7 @@ export function SkateboardModel({
           position={[0, 0.286, -0.002]}
         />
         <mesh
+          ref={addToWheelRefs}
           name="Wheel1"
           castShadow
           receiveShadow
@@ -150,6 +182,7 @@ export function SkateboardModel({
           position={[0.238, 0.086, 0.635]}
         />
         <mesh
+          ref={addToWheelRefs}
           name="Wheel2"
           castShadow
           receiveShadow
@@ -166,6 +199,7 @@ export function SkateboardModel({
           position={[0, 0.271, -0.002]}
         />
         <mesh
+          ref={addToWheelRefs}
           name="Wheel4"
           castShadow
           receiveShadow
@@ -184,6 +218,7 @@ export function SkateboardModel({
           rotation={[Math.PI, 0, Math.PI]}
         />
         <mesh
+          ref={addToWheelRefs}
           name="Wheel3"
           castShadow
           receiveShadow

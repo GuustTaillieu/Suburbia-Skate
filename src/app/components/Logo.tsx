@@ -1,5 +1,8 @@
+"use client";
+
 import clsx from "clsx";
 import { SVGProps } from "react";
+import { useIsSafari } from "../lib/useIsSafari";
 
 export function Logo(props: SVGProps<SVGSVGElement>) {
   return (
@@ -19,12 +22,14 @@ export function Logo(props: SVGProps<SVGSVGElement>) {
 }
 
 export function TallLogo({ className, ...props }: SVGProps<SVGSVGElement>) {
+  const isSafari = useIsSafari();
+
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
       viewBox="0 0 366 420"
-      className={clsx(className, "animate-squiggle")}
+      className={clsx(className, isSafari ? undefined : "animate-squiggle")}
       {...props}
     >
       <path
@@ -36,12 +41,14 @@ export function TallLogo({ className, ...props }: SVGProps<SVGSVGElement>) {
 }
 
 export function WideLogo({ className, ...props }: SVGProps<SVGSVGElement>) {
+  const isSafari = useIsSafari();
+
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
       viewBox="0 0 1440 553"
-      className={clsx(className, "animate-squiggle")}
+      className={clsx(className, isSafari ? undefined : "animate-squiggle")}
       {...props}
     >
       <path
