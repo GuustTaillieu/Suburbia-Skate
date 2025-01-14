@@ -9,6 +9,7 @@ import { JSX } from "react";
 import { Bounded } from "@/app/components/Bounded";
 import { Heading } from "@/app/components/Heading";
 import { SkateboardProduct } from "./SkateboardProduct";
+import { SlideInAnimation } from "@/app/components/SlideInAnimation";
 
 /**
  * Props for `ProductGrid`.
@@ -25,18 +26,25 @@ const ProductGrid = ({ slice }: ProductGridProps): JSX.Element => {
       data-slice-variation={slice.variation}
       className="bg-texture bg-brand-gray"
     >
-      <Heading className="text-center ~mb-4/6" as="h2">
-        <PrismicText field={slice.primary.heading} />
-      </Heading>
-      <div className="text-center ~mb-6/10">
-        <PrismicRichText field={slice.primary.body} />
-      </div>
+      <SlideInAnimation>
+        <Heading className="text-center ~mb-4/6" as="h2">
+          <PrismicText field={slice.primary.heading} />
+        </Heading>
+      </SlideInAnimation>
+
+      <SlideInAnimation>
+        <div className="text-center ~mb-6/10">
+          <PrismicRichText field={slice.primary.body} />
+        </div>
+      </SlideInAnimation>
 
       <div className="grid w-full grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
         {slice.primary.product.map(
-          ({ skateboard }) =>
+          ({ skateboard }, index) =>
             isFilled.contentRelationship(skateboard) && (
-              <SkateboardProduct key={skateboard.id} id={skateboard.id} />
+              <SlideInAnimation delay={index * 100 + 200} key={skateboard.id}>
+                <SkateboardProduct id={skateboard.id} />
+              </SlideInAnimation>
             ),
         )}
       </div>

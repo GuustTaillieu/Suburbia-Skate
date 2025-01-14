@@ -12,6 +12,7 @@ import { ButtonLink } from "@/app/components/ButtonLink";
 import { ParallaxImage } from "@/app/components/ParallaxImage";
 import { JSX } from "react/jsx-runtime";
 import { getBgColorByTheme } from "@/app/lib/color-by-theme";
+import { SlideInAnimation } from "@/app/components/SlideInAnimation";
 
 /**
  * Props for `AboutTheSkateboards`.
@@ -43,18 +44,26 @@ const AboutTheSkateboards = ({
             slice.variation == "imageOnLeft" ? "md:order-2" : "",
           )}
         >
-          <Heading as="h2" size="lg">
-            <PrismicText field={slice.primary.heading} />
-          </Heading>
-          <div className="max-w-md text-lg leading-relaxed">
-            <PrismicRichText field={slice.primary.body} />
-          </div>
-          <ButtonLink
-            field={slice.primary.button}
-            color={slice.primary.theme == "Lime" ? "orange" : "lime"}
-          >
-            {slice.primary.button.text}
-          </ButtonLink>
+          <SlideInAnimation>
+            <Heading as="h2" size="lg">
+              <PrismicText field={slice.primary.heading} />
+            </Heading>
+          </SlideInAnimation>
+
+          <SlideInAnimation>
+            <div className="max-w-md text-lg leading-relaxed">
+              <PrismicRichText field={slice.primary.body} />
+            </div>
+          </SlideInAnimation>
+
+          <SlideInAnimation>
+            <ButtonLink
+              field={slice.primary.button}
+              color={slice.primary.theme == "Lime" ? "orange" : "lime"}
+            >
+              {slice.primary.button.text}
+            </ButtonLink>
+          </SlideInAnimation>
         </div>
 
         <ParallaxImage
