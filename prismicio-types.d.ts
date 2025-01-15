@@ -222,6 +222,137 @@ export type SkateboardDocument<Lang extends string = string> =
   >;
 
 /**
+ * Item in *Skateboard Customizer → Wheels*
+ */
+export interface SkateboardCustomizerDocumentDataWheelsItem {
+  /**
+   * Texture field in *Skateboard Customizer → Wheels*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: skateboard_customizer.wheels[].texture
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  texture: prismic.ImageField<never>;
+
+  /**
+   * UID field in *Skateboard Customizer → Wheels*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: skateboard_customizer.wheels[].uid
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  uid: prismic.KeyTextField;
+}
+
+/**
+ * Item in *Skateboard Customizer → Decks*
+ */
+export interface SkateboardCustomizerDocumentDataDecksItem {
+  /**
+   * Texture field in *Skateboard Customizer → Decks*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: skateboard_customizer.decks[].texture
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  texture: prismic.ImageField<never>;
+
+  /**
+   * UID field in *Skateboard Customizer → Decks*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: skateboard_customizer.decks[].uid
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  uid: prismic.KeyTextField;
+}
+
+/**
+ * Item in *Skateboard Customizer → Metals*
+ */
+export interface SkateboardCustomizerDocumentDataMetalsItem {
+  /**
+   * Color field in *Skateboard Customizer → Metals*
+   *
+   * - **Field Type**: Color
+   * - **Placeholder**: *None*
+   * - **API ID Path**: skateboard_customizer.metals[].color
+   * - **Documentation**: https://prismic.io/docs/field#color
+   */
+  color: prismic.ColorField;
+
+  /**
+   * UID field in *Skateboard Customizer → Metals*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: skateboard_customizer.metals[].uid
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  uid: prismic.KeyTextField;
+}
+
+/**
+ * Content for Skateboard Customizer documents
+ */
+interface SkateboardCustomizerDocumentData {
+  /**
+   * Wheels field in *Skateboard Customizer*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: skateboard_customizer.wheels[]
+   * - **Tab**: Wheels
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  wheels: prismic.GroupField<
+    Simplify<SkateboardCustomizerDocumentDataWheelsItem>
+  > /**
+   * Decks field in *Skateboard Customizer*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: skateboard_customizer.decks[]
+   * - **Tab**: Decks
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */;
+  decks: prismic.GroupField<
+    Simplify<SkateboardCustomizerDocumentDataDecksItem>
+  > /**
+   * Metals field in *Skateboard Customizer*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: skateboard_customizer.metals[]
+   * - **Tab**: Metals
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */;
+  metals: prismic.GroupField<
+    Simplify<SkateboardCustomizerDocumentDataMetalsItem>
+  >;
+}
+
+/**
+ * Skateboard Customizer document from Prismic
+ *
+ * - **API ID**: `skateboard_customizer`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type SkateboardCustomizerDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<SkateboardCustomizerDocumentData>,
+    "skateboard_customizer",
+    Lang
+  >;
+
+/**
  * Content for Skater documents
  */
 interface SkaterDocumentData {
@@ -310,6 +441,7 @@ export type AllDocumentTypes =
   | HomepageDocument
   | SettingsDocument
   | SkateboardDocument
+  | SkateboardCustomizerDocument
   | SkaterDocument;
 
 /**
@@ -858,6 +990,11 @@ declare module "@prismicio/client" {
       SettingsDocumentDataTopNavigationItem,
       SkateboardDocument,
       SkateboardDocumentData,
+      SkateboardCustomizerDocument,
+      SkateboardCustomizerDocumentData,
+      SkateboardCustomizerDocumentDataWheelsItem,
+      SkateboardCustomizerDocumentDataDecksItem,
+      SkateboardCustomizerDocumentDataMetalsItem,
       SkaterDocument,
       SkaterDocumentData,
       AllDocumentTypes,
