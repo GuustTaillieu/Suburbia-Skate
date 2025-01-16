@@ -49,7 +49,7 @@ function Scene({ children }: SceneProps) {
     window.addEventListener("resize", setZoom);
 
     function setZoom() {
-      const scale = Math.max(Math.min(1060 / window.innerWidth, 2.2), 1.1);
+      const scale = Math.max(Math.min(1000 / window.innerWidth, 2.2), 1);
 
       camera.position.x = INITIAL_CAMERA_POSITION[0] * scale;
       camera.position.y = INITIAL_CAMERA_POSITION[1] * scale;
