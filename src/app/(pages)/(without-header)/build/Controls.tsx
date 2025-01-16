@@ -90,7 +90,7 @@ export const Controls = ({ wheels, decks, metals, className }: Props) => {
         ))}
       </Options>
 
-      <Options title="Truck" selectedName={metals[0]?.uid}>
+      <Options title="Truck" selectedName={selectedTruck?.uid}>
         {metals.map((metal) => (
           <Option
             key={metal.uid}
@@ -103,7 +103,7 @@ export const Controls = ({ wheels, decks, metals, className }: Props) => {
         ))}
       </Options>
 
-      <Options title="Bolt" selectedName={metals[0]?.uid}>
+      <Options title="Bolt" selectedName={selectedBolt?.uid}>
         {metals.map((metal) => (
           <Option
             key={metal.uid}
