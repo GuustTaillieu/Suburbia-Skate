@@ -14,7 +14,7 @@ export type SkateboardModelProps = {
   truckColor: string;
   boltColor: string;
   constantWheelSpin?: boolean;
-  pose: "upright" | "side";
+  pose?: "upright" | "side";
 };
 
 type GLTFResult = GLTF & {

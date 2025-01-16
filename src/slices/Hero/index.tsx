@@ -1,5 +1,4 @@
 import { asImageSrc, Content, isFilled } from "@prismicio/client";
-import { PrismicNextLink } from "@prismicio/next";
 import {
   PrismicRichText,
   PrismicText,

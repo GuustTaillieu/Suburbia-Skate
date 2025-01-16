@@ -10,7 +10,7 @@ type Props = {
   index: number;
 };
 
-export function Skater({ skater, index }: Props): JSX.Element {
+export function Skater({ skater }: Props) {
   return (
     <div className="skater group relative flex flex-col items-center gap-4">
       <div className="stack-layout overflow-hidden">
