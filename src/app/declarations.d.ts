@@ -11,6 +11,6 @@ declare global {
 
 declare module "react" {
   interface CSSProperties {
-    "--index": number;
+    "--index"?: number;
   }
 }
