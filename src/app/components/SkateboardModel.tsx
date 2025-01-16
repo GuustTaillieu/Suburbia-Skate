@@ -44,7 +44,7 @@ export function SkateboardModel({
 }: SkateboardModelProps) {
   const wheelRefs = useRef<THREE.Object3D[]>([]);
 
-  const { nodes } = useGLTF("/skateboard.gltf") as GLTFResult;
+  const { nodes } = useGLTF("/skateboard.gltf") as unknown as GLTFResult;
 
   // WHEEL TEXTURES
   const wheelTextures = useTexture(wheelTextureUrls);
