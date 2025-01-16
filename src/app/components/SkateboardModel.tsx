@@ -168,7 +168,7 @@ export function SkateboardModel({
       ({
         upright: {
           rotation: [0, 0, 0],
-          position: [0, 0, -0.2],
+          position: [0, 0, 0],
         },
         side: {
           rotation: [0, 0, Math.PI / 2],

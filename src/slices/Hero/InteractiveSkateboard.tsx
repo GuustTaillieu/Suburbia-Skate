@@ -218,40 +218,46 @@ function Scene({ children }: SceneProps) {
   return (
     <group>
       <Environment files={"/hdr/warehouse-256.hdr"} />
-      <group ref={originCenterRef}>
-        <group ref={containterRef} position={[0, 0.086, -0.635]}>
-          <group position={[0, -0.086, 0.635]}>
-            {children}
+      <group position={[0, 0, -0.2]}>
+        <group ref={originCenterRef}>
+          <group ref={containterRef} position={[0, 0.086, -0.635]}>
+            <group position={[0, -0.086, 0.635]}>
+              {children}
 
-            <HotSpot
-              isVisible={!isAnimating && showHotSpots.frontside}
-              position={[0, 0.38, 1]}
-              color="#B8FC39"
-            />
-            <mesh position={[0, 0.27, 0.9]} name="frontside" onClick={onClick}>
-              <boxGeometry args={[0.6, 0.2, 0.58]} />
-              <meshStandardMaterial visible={false} />
-            </mesh>
+              <HotSpot
+                isVisible={!isAnimating && showHotSpots.frontside}
+                position={[0, 0.38, 1]}
+                color="#B8FC39"
+              />
+              <mesh
+                position={[0, 0.27, 0.9]}
+                name="frontside"
+                onClick={onClick}
+              >
+                <boxGeometry args={[0.6, 0.2, 0.58]} />
+                <meshStandardMaterial visible={false} />
+              </mesh>
 
-            <HotSpot
-              isVisible={!isAnimating && showHotSpots.kickflip}
-              position={[0, 0.33, 0]}
-              color="#ff7347"
-            />
-            <mesh position={[0, 0.27, 0]} name="kickflip" onClick={onClick}>
-              <boxGeometry args={[0.6, 0.1, 1.2]} />
-              <meshStandardMaterial visible={false} />
-            </mesh>
+              <HotSpot
+                isVisible={!isAnimating && showHotSpots.kickflip}
+                position={[0, 0.33, 0]}
+                color="#ff7347"
+              />
+              <mesh position={[0, 0.27, 0]} name="kickflip" onClick={onClick}>
+                <boxGeometry args={[0.6, 0.1, 1.2]} />
+                <meshStandardMaterial visible={false} />
+              </mesh>
 
-            <HotSpot
-              isVisible={!isAnimating && showHotSpots.ollie}
-              position={[0, 0.35, -0.9]}
-              color="#4876ff"
-            />
-            <mesh position={[0, 0.27, -0.9]} name="ollie" onClick={onClick}>
-              <boxGeometry args={[0.6, 0.2, 0.58]} />
-              <meshStandardMaterial visible={false} />
-            </mesh>
+              <HotSpot
+                isVisible={!isAnimating && showHotSpots.ollie}
+                position={[0, 0.35, -0.9]}
+                color="#4876ff"
+              />
+              <mesh position={[0, 0.27, -0.9]} name="ollie" onClick={onClick}>
+                <boxGeometry args={[0.6, 0.2, 0.58]} />
+                <meshStandardMaterial visible={false} />
+              </mesh>
+            </group>
           </group>
         </group>
       </group>
